@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:DndResultsPageTests.ViewModels.ResultsPageComponentModels"
+             x:Class="DndResultsPageTests.ViewModels.ResultsPageComponentModels.ResultsPageHeaderViewModel"
+             x:DataType="vm:ResultsPageHeaderViewModel">
+    <FlexLayout Direction="Column">
+        <FlexLayout Direction="Row">
+            <Label Text="{Binding HeaderTitle}" StyleClass="H1"/>
+            <Image Source="{Binding HeaderIcon}" StyleClass="HeaderIcon"/>
+        </FlexLayout>
+        <BoxView HeightRequest="3" 
+                 Color="{DynamicResource CurrentPageAccentColour}"
+                 HorizontalOptions="Fill"/>
+        <Label Text="{Binding HeaderSubtitle}" StyleClass="SubtitleText"/>
+    </FlexLayout>
+</ContentView>

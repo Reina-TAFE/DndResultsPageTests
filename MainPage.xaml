@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DndResultsPageTests.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Button
+                x:Name="FireBallBtn"
+                Text="Open Fireball" 
+                SemanticProperties.Hint="Opens the ResultsPage for spell: Fireball"
+                Clicked="FireBallBtnClicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="AbacusBtn"
+                Text="Open Abacus" 
+                SemanticProperties.Hint="Opens the ResultsPage for Equipment: Abacus"
+                Clicked="AbacusBtnClicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="GreataxeBtn"
+                Text="Open Greataxe" 
+                SemanticProperties.Hint="Opens the ResultsPage for Equipment(Weapon): Greataxe"
+                Clicked="GreataxeBtnClicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="MuleBtn"
+                Text="Open Mule" 
+                SemanticProperties.Hint="Opens the ResultsPage for Equipment(Vehicle): Mule"
+                Clicked="MuleBtnClicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="PaddedArmourBtn"
+                Text="Open Padded Armour" 
+                SemanticProperties.Hint="Opens the ResultsPage for Equipment(Armour): Padded Armour"
+                Clicked="PaddedArmourBtnClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
