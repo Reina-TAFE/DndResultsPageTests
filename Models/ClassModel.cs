@@ -41,6 +41,8 @@ namespace DndResultsPageTests.Models
             Proficiencies = proficiencies.Select(p => new Proficiency(p)) as List<Proficiency>;
             SavingThrows = savingThrows;
             Subclasses = subclasses;
+            SpellCasting = spellCasting;
+            SpellsListResourceUrl = spellsListResourceUrl;
         }
 
         public new ResultsPageViewModel ToResultsPageViewModel()
@@ -58,7 +60,7 @@ namespace DndResultsPageTests.Models
         public (ResultsPageHeaderModel, ResultsPageSectionModel) GetResultsPageComponentModels()
         {
             ResultsPageHeaderModel header = new ResultsPageHeaderModel(Name, "DnD 5e (2014)", GetClassIcon());
-            ResultsPageSectionModel body = new ResultsPageSectionModel("armour", GetSections());
+            ResultsPageSectionModel body = new ResultsPageSectionModel("class", GetSections());
             return (header, body);
         }
 
@@ -66,7 +68,8 @@ namespace DndResultsPageTests.Models
         {
             List<SectionContent> sections = new List<SectionContent>();
             SectionContent attributeSection = GetStatsSection();
-            SectionContent propertiesSection = GetPropertiesSection();
+            SectionContent propertiesSection = GetStartingEquipmentSection();
+            SectionContent levelsSection = GetLevelsSection();
             sections.Add(attributeSection);
             sections.Add(propertiesSection);
             return sections;
@@ -169,7 +172,8 @@ namespace DndResultsPageTests.Models
                     new SectionItem
                     {
                         SectionItemTitle = "Levels",
-                        ItemType = "LevelTable",
+                        //ItemType = "LevelTable",
+                        ItemType = "KeyValueList",
                         ItemContent = new List<Dictionary<string, string?>>
                         {
                             new Dictionary<string, string?>

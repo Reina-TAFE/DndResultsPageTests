@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using DndResultsPageTests.Pages;
+using DndResultsPageTests.ViewModels;
+using DndResultsPageTests.ViewModels.ResultsPageComponentModels;
 
 namespace DndResultsPageTests
 {
@@ -17,6 +20,10 @@ namespace DndResultsPageTests
 
 #if DEBUG
     		builder.Logging.AddDebug();
+            builder.Services.AddTransient < ResultsPage>();
+            builder.Services.AddTransient<ResultsPageViewModel>();
+            builder.Services.AddTransient<ResultsPageHeaderViewModel>();
+            builder.Services.AddTransient<ResultsPageSectionViewModel>();
 #endif
 
             return builder.Build();

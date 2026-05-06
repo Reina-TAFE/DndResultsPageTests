@@ -1,6 +1,9 @@
 using DndResultsPageTests.Models;
+using DndResultsPageTests.Models.ResponseModels;
 using DndResultsPageTests.Models.UI;
+using DndResultsPageTests.Services;
 using Microsoft.Maui.Layouts;
+using System.ComponentModel.Design;
 
 namespace DndResultsPageTests.ViewModels.ResultsPageComponentModels;
 
@@ -60,29 +63,71 @@ public partial class ResultsPageSectionViewModel : ContentView
 				}
 				else if (item.ItemType == "text")
 				{
-					foreach (Dictionary<string, string?> contentDict in item.ItemContent)
+					if (item.ItemContent != null)
 					{
-						foreach (KeyValuePair<string, string?> kvp in contentDict)
+						foreach (Dictionary<string, string?> contentDict in item.ItemContent)
 						{
-							if (kvp.Value != null)
+							foreach (KeyValuePair<string, string?> kvp in contentDict)
 							{
-								if (kvp.Key == "text")
+								if (kvp.Value != null)
 								{
-									Label contentLabel = new Label() { Text = kvp.Value };
-									contentLayout.Children.Add(contentLabel);
-								}
-								else
-								{
-									Label contentLabelKey = new Label() { Text = $"{kvp.Key}:" };
-									Label contentLabel = new Label() { Text = $"{kvp.Value}" };
-									contentLayout.Children.Add(contentLabelKey);
-									contentLayout.Children.Add(contentLabel);
+									if (kvp.Key == "text")
+									{
+										Label contentLabel = new Label() { Text = kvp.Value };
+										contentLayout.Children.Add(contentLabel);
+									}
+									else
+									{
+										Label contentLabelKey = new Label() { Text = $"{kvp.Key}:" };
+										Label contentLabel = new Label() { Text = $"{kvp.Value}" };
+										contentLayout.Children.Add(contentLabelKey);
+										contentLayout.Children.Add(contentLabel);
+									}
 								}
 							}
-                        }
-                    }
-					contentLayout.Children.Add(separator);
+						}
+						contentLayout.Children.Add(separator);
+					}
 				}
+				else if (item.ItemType == "CategoryList")
+				{
+					List<SearchCategory> categories = item.ItemObjects?.Select(c => c as SearchCategory).ToList();
+					CollectionView categoryCollectionView = new CollectionView
+					{
+						ItemsSource = categories,
+					};
+					categoryCollectionView.ItemTemplate = new DataTemplate(() =>
+					{
+						Button categoryButton = new Button
+						{
+							HorizontalOptions = LayoutOptions.Fill,
+							HeightRequest = 65,
+							Padding = 5,
+							Margin = 5,
+
+						};
+						TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer
+						{
+							NumberOfTapsRequired = 1,
+						};
+						tapGestureRecognizer.Tapped += async (s, e) =>
+						{
+							Button button = (Button)s;
+							SearchCategory searchOption = (SearchCategory)button.BindingContext;
+							SubClassModel responseObj = await ApiService.GetResourcesForEndpointAsync<SubClassModel>(searchOption);
+							ResultsPageViewModel viewModel = responseObj.ToResultsPageViewModel();
+							IDictionary<string, object> queryOptions = new Dictionary<string, object>
+							{
+								{  "ViewModel", viewModel   }
+							};
+							await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+						};
+						categoryButton.GestureRecognizers.Add(tapGestureRecognizer);
+						categoryButton.SetBinding(Button.TextProperty, "Name");
+						return categoryButton;
+					});
+				}
+
 			}
 			return contentLayout;
 		}

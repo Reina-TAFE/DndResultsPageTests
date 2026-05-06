@@ -29,7 +29,10 @@ namespace DndResultsPageTests
             {
                 {  "ViewModel", viewModel   }
             };
-            await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+            });
         }
 
         private async void AbacusBtnClicked(object? sender, EventArgs e)
@@ -42,7 +45,11 @@ namespace DndResultsPageTests
             {
                 {  "ViewModel", viewModel   }
             };
-            await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+            
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+            });
         }
 
         private async void GreataxeBtnClicked(object? sender, EventArgs e)

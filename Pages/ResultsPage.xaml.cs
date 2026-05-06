@@ -12,6 +12,11 @@ public partial class ResultsPage : ContentPage, IQueryAttributable
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         ResultsPageViewModel viewModel = query["ViewModel"] as ResultsPageViewModel;
-        ResultsPageWrapper.Content = viewModel.PageContent.Content;
+        LoadViewModel(viewModel);
+    }
+
+    public void LoadViewModel(ResultsPageViewModel vm)
+    {
+        ResultsPageWrapper.Content = vm.PageContent.Content;
     }
 }
