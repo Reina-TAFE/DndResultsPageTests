@@ -78,9 +78,11 @@ namespace DndResultsPageTests.Models
         public List<SectionContent> GetSections() 
         {
             SectionContent requirementsSection = this.GetRequirementsSection(); // Requirements Section includes the following sub-sections: Level, School, Cast Time, Range, Duration, Components, Materials, Ritual, Concentration
+            //SectionContent requirementsSection2 = this.GetRequirementsSection(); // Requirements Section includes the following sub-sections: Level, School, Cast Time, Range, Duration, Components, Materials, Ritual, Concentration
             SectionContent usageSection = this.GetUsageSection(); // Usage Section includes the following sub-sections: Description, Materials, Higher Level (if applicable)
             List<SectionContent> sections = new List<SectionContent>();
             sections.Add( requirementsSection );
+            //sections.Add( requirementsSection2 );
             sections.Add( usageSection );
 
             return sections;
@@ -141,37 +143,37 @@ namespace DndResultsPageTests.Models
                         new SectionItem
                         {
                             SectionItemTitle = "Materials",
-                            ItemType = "text",
+                            ItemType = "KeyValueList",
                             ItemContent = new List<Dictionary<string, string?>>
                             {
                                 {
                                     new Dictionary<string, string?>
                                     {
-                                        { "text", Materials }
+                                        { "text", (Materials != null) ? Materials.ToString() : string.Empty }
                                     }
                                 }
                             }
                         },
-                        new SectionItem
-                        {
-                            SectionItemTitle = "Description",
-                            ItemType = "text",
-                            ItemContent = new List<Dictionary<string, string?>>
-                            {
-                                {
-                                    new Dictionary<string, string?>
-                                    {
-                                        { "text", Description[0] }
-                                    }
-                                },
-                                {
-                                    new Dictionary<string, string?>
-                                    {
-                                        { "At Higher Levels", (HigherLevel != null && HigherLevel.Count > 0) ? $"At Higher Levels: {string.Join("\n", HigherLevel)}" : string.Empty }
-                                    }
-                                }
-                            }
-                        }
+                        //new SectionItem
+                        //{
+                        //    SectionItemTitle = "Description",
+                        //    ItemType = "KeyValueList",
+                        //    ItemContent = new List<Dictionary<string, string?>>
+                        //    {
+                        //        {
+                        //            new Dictionary<string, string?>
+                        //            {
+                        //                { "text", (Description?[0] != null) ? Description?[0]?.ToString() :string.Empty }
+                        //            }
+                        //        },
+                        //        {
+                        //            new Dictionary<string, string?>
+                        //            {
+                        //                { "At Higher Levels", (HigherLevel != null && HigherLevel.Count > 0) ? $"At Higher Levels: {string.Join("\n", HigherLevel)}" : string.Empty }
+                        //            }
+                        //        }
+                        //    }
+                        //}
                     }
             };
             return section;

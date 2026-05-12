@@ -21,6 +21,8 @@ namespace DndResultsPageTests.ViewModels
         {
             Header = header;
             Body = body;
+            Header.Content.Parent = null;
+            //Body.Content.Parent = null;
             Grid PageWrapper = new Grid
             {
                     RowDefinitions = new RowDefinitionCollection
@@ -37,6 +39,7 @@ namespace DndResultsPageTests.ViewModels
                     new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
                 },
             };
+            VerticalStackLayout gridWrapper = new VerticalStackLayout();
             ContentGrid.Add(Header, 0, 0);
             ContentGrid.Add(Body, 0, 1);
             ScrollView ContentScrollView = new ScrollView
@@ -45,6 +48,7 @@ namespace DndResultsPageTests.ViewModels
             };
             PageWrapper.Add(ContentScrollView, 0, 0);
             PageContent.Content = PageWrapper;
+            //PageContent.Content = ContentGrid;
 
         }
     }

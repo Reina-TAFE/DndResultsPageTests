@@ -55,7 +55,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 						{
 							if (kvp.Value != null)
 							{
-								Label contentLabel = new Label() { Text = $"{kvp.Key}: {kvp.Value}" };
+								Label contentLabel = new Label { Text = $"{kvp.Key}: {kvp.Value}" };
 								contentLayout.Children.Add(contentLabel);
 							}
 						}
@@ -73,13 +73,13 @@ public partial class ResultsPageSectionViewModel : ContentView
 								{
 									if (kvp.Key == "text")
 									{
-										Label contentLabel = new Label() { Text = kvp.Value };
+										Label contentLabel = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:" };
 										contentLayout.Children.Add(contentLabel);
 									}
 									else
 									{
-										Label contentLabelKey = new Label() { Text = $"{kvp.Key}:" };
-										Label contentLabel = new Label() { Text = $"{kvp.Value}" };
+										Label contentLabelKey = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:" };
+										Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}" };
 										contentLayout.Children.Add(contentLabelKey);
 										contentLayout.Children.Add(contentLabel);
 									}

@@ -14,7 +14,7 @@ public partial class ResultsPageHeaderViewModel : ContentView
         HeaderSubtitle = headerModel.SubtitleText;
         HeaderIcon = headerModel.Icon;
 
-        Grid ContentGrid = new Grid
+        Grid HeaderGrid = new Grid
         {
             RowDefinitions = new RowDefinitionCollection
             {
@@ -44,10 +44,10 @@ public partial class ResultsPageHeaderViewModel : ContentView
             VerticalOptions = LayoutOptions.Center
         };
         BoxView seperator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
-        ContentGrid.Add(TitleLabel, 0, 0);
-        ContentGrid.Add(HeaderIcon, 1, 0);
-        ContentGrid.AddWithSpan(seperator, 1, 0, 1, 2);
-        ContentGrid.Add(SubtitleLabel, 0, 2);
-        Content = ContentGrid;
+        HeaderGrid.Add(TitleLabel, 0, 0);
+        HeaderGrid.Add(HeaderIcon, 1, 0);
+        HeaderGrid.AddWithSpan(seperator, 1, 0, 1, 2);
+        HeaderGrid.Add(SubtitleLabel, 0, 2);
+        Content = HeaderGrid;
     }
 }

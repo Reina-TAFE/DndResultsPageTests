@@ -25,7 +25,7 @@ namespace DndResultsPageTests
             SpellResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SpellResponseModel>(searchOption);
             SpellModel spell = responseObj.ToModel();
             ResultsPageViewModel viewModel = spell.ToResultsPageViewModel();
-            IDictionary<string, object> queryOptions = new Dictionary<string, object>
+            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
             {
                 {  "ViewModel", viewModel   }
             };
@@ -41,7 +41,7 @@ namespace DndResultsPageTests
             UniversalEquipmentResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<UniversalEquipmentResponseModel>(searchOption);
             EquipmentModel abacus = responseObj.ToEquipmentModel();
             ResultsPageViewModel viewModel = abacus.ToResultsPageViewModel();
-            IDictionary<string, object> queryOptions = new Dictionary<string, object>
+            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
             {
                 {  "ViewModel", viewModel   }
             };
@@ -58,7 +58,7 @@ namespace DndResultsPageTests
             UniversalEquipmentResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<UniversalEquipmentResponseModel>(searchOption);
             WeaponModel greataxe = responseObj.ToWeaponModel();
             ResultsPageViewModel viewModel = greataxe.ToResultsPageViewModel();
-            IDictionary<string, object> queryOptions = new Dictionary<string, object>
+            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
             {
                 {  "ViewModel", viewModel   }
             };
@@ -71,7 +71,7 @@ namespace DndResultsPageTests
             UniversalEquipmentResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<UniversalEquipmentResponseModel>(searchOption);
             VehicleModel mule = responseObj.ToVehicleModel();
             ResultsPageViewModel viewModel = mule.ToResultsPageViewModel();
-            IDictionary<string, object> queryOptions = new Dictionary<string, object>
+            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
             {
                 {  "ViewModel", viewModel   }
             };
@@ -84,7 +84,7 @@ namespace DndResultsPageTests
             UniversalEquipmentResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<UniversalEquipmentResponseModel>(searchOption);
             ArmourModel paddedArmour = responseObj.ToArmourModel();
             ResultsPageViewModel viewModel = paddedArmour.ToResultsPageViewModel();
-            IDictionary<string, object> queryOptions = new Dictionary<string, object>
+            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
             {
                 {  "ViewModel", viewModel   }
             };
