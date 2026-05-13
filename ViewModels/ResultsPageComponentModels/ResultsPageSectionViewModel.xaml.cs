@@ -73,7 +73,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 								{
 									if (kvp.Key == "text")
 									{
-										Label contentLabel = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:" };
+										Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}:" };
 										contentLayout.Children.Add(contentLabel);
 									}
 									else
@@ -86,7 +86,8 @@ public partial class ResultsPageSectionViewModel : ContentView
 								}
 							}
 						}
-						contentLayout.Children.Add(separator);
+                        BoxView separator2 = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
+                        contentLayout.Children.Add(separator2);
 					}
 				}
 				else if (item.ItemType == "CategoryList")

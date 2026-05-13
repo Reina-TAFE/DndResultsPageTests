@@ -143,7 +143,7 @@ namespace DndResultsPageTests.Models
                         new SectionItem
                         {
                             SectionItemTitle = "Materials",
-                            ItemType = "KeyValueList",
+                            ItemType = "text",
                             ItemContent = new List<Dictionary<string, string?>>
                             {
                                 {
