@@ -36,7 +36,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 		{
 			VerticalStackLayout contentLayout = new VerticalStackLayout();
 			contentLayout.Spacing = 5;
-			BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
+			//BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
             foreach (SectionItem item in sectionContent.Content)
 			{
 				if (item.SectionItemTitle != null)
@@ -44,8 +44,8 @@ public partial class ResultsPageSectionViewModel : ContentView
 
 					Label itemTitle = new Label() { Text = item.SectionItemTitle, FontAttributes = FontAttributes.Bold, VerticalTextAlignment= TextAlignment.End};
 					//BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
-                    contentLayout.Children.Add(itemTitle);
-                    contentLayout.Children.Add(separator);
+                    contentLayout.Add(itemTitle);
+                    contentLayout.Add(new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });
 				}
 				if (item.ItemType == "KeyValueList")
 				{
@@ -56,7 +56,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 							if (kvp.Value != null)
 							{
 								Label contentLabel = new Label { Text = $"{kvp.Key}: {kvp.Value}" };
-								contentLayout.Children.Add(contentLabel);
+								contentLayout.Add(contentLabel);
 							}
 						}
 					}
@@ -74,20 +74,20 @@ public partial class ResultsPageSectionViewModel : ContentView
 									if (kvp.Key == "text")
 									{
 										Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}:" };
-										contentLayout.Children.Add(contentLabel);
+										contentLayout.Add(contentLabel);
 									}
 									else
 									{
-										Label contentLabelKey = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:" };
+										Label contentLabelKey = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:", FontAttributes = FontAttributes.Bold };
 										Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}" };
-										contentLayout.Children.Add(contentLabelKey);
-										contentLayout.Children.Add(contentLabel);
+										contentLayout.Add(contentLabelKey);
+										contentLayout.Add(contentLabel);
 									}
 								}
 							}
 						}
-                        BoxView separator2 = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
-                        contentLayout.Children.Add(separator2);
+                        //BoxView separator2 = ;
+                        contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });
 					}
 				}
 				else if (item.ItemType == "CategoryList")

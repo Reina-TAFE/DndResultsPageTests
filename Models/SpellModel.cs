@@ -154,26 +154,26 @@ namespace DndResultsPageTests.Models
                                 }
                             }
                         },
-                        //new SectionItem
-                        //{
-                        //    SectionItemTitle = "Description",
-                        //    ItemType = "KeyValueList",
-                        //    ItemContent = new List<Dictionary<string, string?>>
-                        //    {
-                        //        {
-                        //            new Dictionary<string, string?>
-                        //            {
-                        //                { "text", (Description?[0] != null) ? Description?[0]?.ToString() :string.Empty }
-                        //            }
-                        //        },
-                        //        {
-                        //            new Dictionary<string, string?>
-                        //            {
-                        //                { "At Higher Levels", (HigherLevel != null && HigherLevel.Count > 0) ? $"At Higher Levels: {string.Join("\n", HigherLevel)}" : string.Empty }
-                        //            }
-                        //        }
-                        //    }
-                        //}
+                        new SectionItem
+                        {
+                            SectionItemTitle = "Description",
+                            ItemType = "text",
+                            ItemContent = new List<Dictionary<string, string?>>
+                            {
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "text", (Description?[0] != null) ? Description?[0]?.ToString() :string.Empty }
+                                    }
+                                },
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "At Higher Levels:", (HigherLevel != null && HigherLevel.Count > 0) ? $"{string.Join("\n", HigherLevel)}" : string.Empty }
+                                    }
+                                }
+                            }
+                        }
                     }
             };
             return section;
