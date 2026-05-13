@@ -130,6 +130,10 @@ public partial class ResultsPageSectionViewModel : ContentView
 					});
 					contentLayout.Add(categoryCollectionView);
 				}
+				else if (item.ItemType == "LevelTable")
+				{
+
+				}
 
 			}
 			return contentLayout;
