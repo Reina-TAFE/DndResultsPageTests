@@ -53,7 +53,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 					{
 						foreach (KeyValuePair<string, string?> kvp in contentDict)
 						{
-							if (kvp.Value != null)
+							if (kvp.Value != string.Empty && kvp.Value != null)
 							{
 								Label contentLabel = new Label { Text = $"{kvp.Key}: {kvp.Value}" };
 								contentLayout.Add(contentLabel);
@@ -69,7 +69,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 						{
 							foreach (KeyValuePair<string, string?> kvp in contentDict)
 							{
-								if (kvp.Value != null)
+								if (kvp.Value != string.Empty && kvp.Value != null)
 								{
 									if (kvp.Key == "text")
 									{
@@ -92,7 +92,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 				}
 				else if (item.ItemType == "CategoryList")
 				{
-					List<SearchCategory> categories = item.ItemObjects?.Select(c => c as SearchCategory).ToList();
+					List<SearchCategory?>? categories = item.ItemObjects?.Select(c => c as SearchCategory).ToList();
 					CollectionView categoryCollectionView = new CollectionView
 					{
 						ItemsSource = categories,
@@ -113,12 +113,13 @@ public partial class ResultsPageSectionViewModel : ContentView
 						};
 						tapGestureRecognizer.Tapped += async (s, e) =>
 						{
-							Button button = (Button)s;
+							Button? button = (Button?)s;
 							SearchCategory searchOption = (SearchCategory)button.BindingContext;
-							SubClassModel responseObj = await ApiService.GetResourcesForEndpointAsync<SubClassModel>(searchOption);
-							ResultsPageViewModel viewModel = responseObj.ToResultsPageViewModel();
-							IDictionary<string, object> queryOptions = new Dictionary<string, object>
-							{
+							SubClassResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SubClassResponseModel>(searchOption);
+							SubClassModel subclass = responseObj.ToModel();
+							ResultsPageViewModel viewModel = subclass.ToResultsPageViewModel();
+                            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                            {
 								{  "ViewModel", viewModel   }
 							};
 							await Shell.Current.GoToAsync("ResultsPage", queryOptions);
@@ -127,6 +128,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 						categoryButton.SetBinding(Button.TextProperty, "Name");
 						return categoryButton;
 					});
+					contentLayout.Add(categoryCollectionView);
 				}
 
 			}

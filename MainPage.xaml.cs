@@ -13,6 +13,7 @@ namespace DndResultsPageTests
         public SearchCategory Greataxe = new SearchCategory("Greataxe", null, "greataxe", "/api/2014/equipment/greataxe");
         public SearchCategory Mule = new SearchCategory("Mule", null, "mule", "/api/2014/equipment/mule");
         public SearchCategory PaddedArmour = new SearchCategory("Padded Armour", null, "padded-armour", "/api/2014/equipment/padded-armor");
+        public SearchCategory Cleric = new SearchCategory("Cleric", null, "Cleric", "/api/2014/classes/cleric");
 
         public MainPage()
         {
@@ -89,6 +90,22 @@ namespace DndResultsPageTests
                 {  "ViewModel", viewModel   }
             };
             await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+        }
+
+        private async void ClericBtnClicked(object? sender, EventArgs e)
+        {
+            SearchCategory searchOption = Cleric;
+            ClassResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<ClassResponseModel>(searchOption);
+            ClassModel classObject = responseObj.ToModel();
+            ResultsPageViewModel viewModel = classObject.ToResultsPageViewModel();
+            ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+            {
+                {  "ViewModel", viewModel   }
+            };
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+            });
         }
     }
 }

@@ -21,7 +21,7 @@ namespace DndResultsPageTests.ViewModels
         {
             Header = header;
             Body = body;
-            Header.Content.Parent = null;
+            Header?.Content.Parent = null;
             //Body.Content.Parent = null;
             Grid PageWrapper = new Grid
             {

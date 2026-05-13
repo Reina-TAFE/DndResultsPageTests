@@ -72,6 +72,7 @@ namespace DndResultsPageTests.Models
             SectionContent levelsSection = GetLevelsSection();
             sections.Add(attributeSection);
             sections.Add(propertiesSection);
+            sections.Add(levelsSection);
             return sections;
         }
 
@@ -166,7 +167,7 @@ namespace DndResultsPageTests.Models
             SectionContent section = new SectionContent
             {
                 SectionTitle = null,
-                ContentType = "standard",
+                ContentType = "Levels",
                 Content = new List<SectionItem>
                 {
                     new SectionItem
@@ -186,10 +187,11 @@ namespace DndResultsPageTests.Models
                     {
                         SectionItemTitle = "SubClasses",
                         ItemType = "CategoryList",
-                        ItemObjects = new List<object?>
-                        {
-                            Subclasses?.Select(sc => sc != null ? new SearchCategory(sc.Index, "Subclass", sc.Index, sc.Url): null)
-                        }
+                        ItemObjects = Subclasses?.Select(sc => sc != null ? new SearchCategory(sc.Index, "Subclass", sc.Index, sc.Url) as object : null).ToList()
+                        //ItemObjects = new List<object?>
+                        //{
+                        //    Subclasses?.Select(sc => sc != null ? new SearchCategory(sc.Index, "Subclass", sc.Index, sc.Url): null).ToList()
+                        //}
                     }
                 }
             };

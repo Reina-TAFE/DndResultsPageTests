@@ -10,7 +10,7 @@
             <Button
                 x:Name="FireBallBtn"
                 Text="Open Fireball" 
-                SemanticProperties.Hint="Opens the ResultsPage for spell: Fireball"
+                SemanticProperties.Hint="Opens the ResultsPage for Spell: Fireball"
                 Clicked="FireBallBtnClicked"
                 HorizontalOptions="Fill" />
             <Button
@@ -36,6 +36,12 @@
                 Text="Open Padded Armour" 
                 SemanticProperties.Hint="Opens the ResultsPage for Equipment(Armour): Padded Armour"
                 Clicked="PaddedArmourBtnClicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="ClericBtn"
+                Text="Open Cleric" 
+                SemanticProperties.Hint="Opens the ResultsPage for Class: Cleric"
+                Clicked="ClericBtnClicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
