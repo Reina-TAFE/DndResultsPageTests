@@ -132,6 +132,19 @@ namespace DndResultsPageTests.Services
             catch { throw new NotImplementedException(); }
         }
 
+        public static async Task<T> GetResourceListForEndpointAsync<T>(SearchCategory endpoint)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(endpoint.Url);
+                response.EnsureSuccessStatusCode();
+                string jsonString = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<T>(jsonString);
+            }
+            catch { throw new NotImplementedException(); }
+        }
+
+
         //public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCategory endpoint)
         //{
         //    try{ 

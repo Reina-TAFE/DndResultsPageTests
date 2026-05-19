@@ -43,6 +43,12 @@
                 SemanticProperties.Hint="Opens the ResultsPage for Class: Cleric"
                 Clicked="ClericBtnClicked"
                 HorizontalOptions="Fill" />
+            <Button
+                x:Name="ClericLevelTableBtn"
+                Text="Open Cleric Levels Table" 
+                SemanticProperties.Hint="Opens the ResultsPage for Class: Cleric"
+                Clicked="ClericLevelsBtnClicked"
+                HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

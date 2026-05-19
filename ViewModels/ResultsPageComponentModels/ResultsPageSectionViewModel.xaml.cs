@@ -4,6 +4,7 @@ using DndResultsPageTests.Models.UI;
 using DndResultsPageTests.Services;
 using Microsoft.Maui.Layouts;
 using System.ComponentModel.Design;
+using static Android.Preferences.PreferenceActivity;
 
 namespace DndResultsPageTests.ViewModels.ResultsPageComponentModels;
 
@@ -132,7 +133,82 @@ public partial class ResultsPageSectionViewModel : ContentView
 				}
 				else if (item.ItemType == "LevelTable")
 				{
-
+					Grid levelTableGrid = new Grid
+					{
+						RowDefinitions = new RowDefinitionCollection
+						{
+                            new RowDefinition { Height = GridLength.Auto },
+                            new RowDefinition { Height = GridLength.Auto },
+                            new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+							new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+						},
+						ColumnDefinitions = new ColumnDefinitionCollection
+						{
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+							new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+						},
+					};
+					List<string>? TableHeaders = item?.ItemObjects[0] as List<string>;
+					List<string>? RowHeaders = item?.ItemObjects[1] as List<string>;
+					List<ClassLevelsModel>? levels = item?.ItemObjects[2] as List<ClassLevelsModel>;
+					Label ClassNameLabel = new Label { Text = TableHeaders[0] };
+					Label SpellSlotsLabel = new Label { Text = TableHeaders[1] };
+					levelTableGrid.Add(ClassNameLabel, 0, 0);
+					levelTableGrid.Add(ClassNameLabel, -1, 0);
+					int i = 0;
+					foreach (string header in RowHeaders) 
+					{ 
+						levelTableGrid.Add(new Label { Text = header }, i, 1);
+					}
+					foreach (ClassLevelsModel level in levels)
+					{
+						int row = (int)level.Level + 1;
+						levelTableGrid.Add(new Label { Text = level.Level.ToString() }, 0, row);
+						levelTableGrid.Add(new Label { Text = level.AbilityScoreBonuses.ToString() }, 1, row);
+						levelTableGrid.Add(new Label { Text = level.ProfBonus.ToString() }, 2, row);
+						levelTableGrid.Add(new Label { Text = string.Join(", ", level.Features.Select(f => f != null ? f.Name : "")) }, 3, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.cantrips_known.ToString() : string.Empty }, 4, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_1.ToString() : string.Empty }, 5, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_2.ToString() : string.Empty }, 6, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_3.ToString() : string.Empty }, 7, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_4.ToString() : string.Empty }, 8, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_5.ToString() : string.Empty }, 9, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_6.ToString() : string.Empty }, 10, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_7.ToString() : string.Empty }, 11, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_8.ToString() : string.Empty }, 12, row);
+						levelTableGrid.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_9.ToString() : string.Empty }, 13, row);
+                    }
+					contentLayout.Add(levelTableGrid);
 				}
 
 			}

@@ -52,4 +52,17 @@ namespace DndResultsPageTests.Models.ResponseModels
         public int spell_slots_level_8 { get; set; }
         public int spell_slots_level_9 { get; set; }
     }
+
+    public class LevelsTableResponseModel
+    {
+        public List<ClassLevelsResponseModel>? root { get; set; }
+
+        public ClassLevelsTableModel ToModel()
+        {
+            return new ClassLevelsTableModel
+            {
+                Levels = root.Select(level => level?.ToModel()).ToList<ClassLevelsModel>()
+            };
+        }
+    }
 }
